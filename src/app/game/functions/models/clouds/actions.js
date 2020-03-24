@@ -7,9 +7,6 @@ export const bufferCloudsStart = (pen, canvasWidth, canvasHeight) => {
 		bufferClouds.push(new Cloud(pen, canvasWidth, _createYPos(canvasHeight)))
 	} else {
 		bufferClouds.map((item, index) => {
-			item.xPos -= 2;
-			item.draw();
-
 			//добавляет облако в буфер
 			if (bufferClouds.length - 1 === index) {
 				if (canvasWidth - cloudWidth - 100 > item.xPos) {
@@ -18,9 +15,13 @@ export const bufferCloudsStart = (pen, canvasWidth, canvasHeight) => {
 					}
 				}
 			}
+
+			//скорость
+			item.xPos -= 2;
+			item.draw();
 		});
 
-		//удаляем облака из буффера
+		//удаляет облака из буффера
 		if (bufferClouds[0].xPos < -cloudWidth) {
 			bufferClouds.splice(0, 1);
 		}
