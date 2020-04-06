@@ -1,7 +1,7 @@
 import {bufferCloudsStart} from "../models/clouds/actions";
 import {bufferGroundsStart} from "../models/ground/actions";
 import {playerStart} from "../models/player/actions";
-import {Cloud} from "../models/clouds";
+import {bufferFragsStart} from "../models/frags/actions";
 
 let canvasWidth = 0;
 let canvasHeight = 0;
@@ -28,6 +28,7 @@ const updateCanvas = (canvas, pen) => {
 	pen.clearRect(0, 0, canvasWidth, canvasHeight);
 	bufferCloudsStart(pen, canvasWidth, canvasHeight);
 	bufferGroundsStart(pen, canvasWidth, canvasHeight);
+	bufferFragsStart(pen, canvasWidth, canvasHeight);
 	playerStart(pen, canvasHeight);
 
 	window.requestAnimationFrame(() => {
