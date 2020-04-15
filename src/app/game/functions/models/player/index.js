@@ -1,6 +1,6 @@
 import {constsCommon} from './../../../consts/common';
 import {playerCoordXRunRight} from "../../../consts/player";
-import {bounceUp, drawRun} from "./actions";
+import {bounceUp, drawRun, seatUp, stopBounce} from "./actions";
 
 export class Player {
 	constructor(pen, xPos, yPos) {
@@ -20,7 +20,11 @@ export class Player {
 		//прыжок
 		this.isBounce = false;
 		this.bounceUp = true; //движение вверх
-		this.bounceCounter = 1;
+		this.bounceCounterBounce = 0;
+
+		//присед
+		this.isSeat = false;
+		this.bounceCounterSeat = 0;
 
 		//события
 		this._events();
@@ -30,6 +34,7 @@ export class Player {
 		this.yPos = (canvasHeight ? canvasHeight : this.yPos) / 2 - 66;
 		if (this.isRun) drawRun.apply(this);
 		if (this.isBounce) bounceUp.apply(this);
+		if (this.isSeat) seatUp.apply(this);
 	}
 
 
@@ -37,12 +42,21 @@ export class Player {
 		//пробел, стерлка вверх
 		if (event.keyCode === 32 || event.keyCode === 38) {
 			if (!this.isBounce) this.isBounce = true;
+		} else if (event.keyCode === 40) {
+			this.isSeat = true;
+
+			//если был прыжок
+			if (this.isBounce) {
+				stopBounce.apply(this);
+			}
 		}
 	};
 
 	_keyUp = event => {
 		//пробел, стерлка вверх
 		if (event.keyCode === 32 || event.keyCode === 38) {
+		} else if (event.keyCode === 40) {
+			this.isSeat = false;
 		}
 	};
 

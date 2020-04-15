@@ -33,20 +33,19 @@ const _changeRandomFrag = (pen, canvasWidth, canvasHeight) => {
 		randomNumber = ((randomNumber * 2 - 1) * 10).toFixed(0);
 		randomNumber = Number(randomNumber);
 
-	// 	if ((randomNumber >= 0) && (randomNumber < 10 / 6)) {
-	// 		return new Cactus(pen, canvasWidth, canvasHeight, cactuses.mini.one);
-	// 	} else if ((randomNumber >= 10 / 6) && (randomNumber < 10 / 6 * 2)) {
-	// 		return new Cactus(pen, canvasWidth, canvasHeight, cactuses.mini.two);
-	// 	} else if ((randomNumber >= 10 / 6 * 2) && (randomNumber < 10 / 6 * 3)) {
-	// 		return new Cactus(pen, canvasWidth, canvasHeight, cactuses.mini.three);
-	// 	} else if ((randomNumber >= 10 / 6 * 3) && (randomNumber < 10 / 6 * 4)) {
-	// 		return new Cactus(pen, canvasWidth, canvasHeight, cactuses.big.one);
-	// 	} else if ((randomNumber >= 10 / 6 * 4) && (randomNumber < 10 / 6 * 5)) {
-	// 		return new Cactus(pen, canvasWidth, canvasHeight, cactuses.big.two);
-	// 	} else if ((randomNumber >= 10 / 6 * 5) && (randomNumber <= 10)) {
-	// 		return new Cactus(pen, canvasWidth, canvasHeight, cactuses.big.three);
-	// 	}
-		return new DinoFly(pen, canvasWidth, canvasHeight, dinoFly.top);
+		if ((randomNumber >= 0) && (randomNumber < 10 / 6)) {
+			return new Cactus(pen, canvasWidth, canvasHeight, cactuses.mini.one);
+		} else if ((randomNumber >= 10 / 6) && (randomNumber < 10 / 6 * 2)) {
+			return new Cactus(pen, canvasWidth, canvasHeight, cactuses.mini.two);
+		} else if ((randomNumber >= 10 / 6 * 2) && (randomNumber < 10 / 6 * 3)) {
+			return new Cactus(pen, canvasWidth, canvasHeight, cactuses.mini.three);
+		} else if ((randomNumber >= 10 / 6 * 3) && (randomNumber < 10 / 6 * 4)) {
+			return new Cactus(pen, canvasWidth, canvasHeight, cactuses.big.one);
+		} else if ((randomNumber >= 10 / 6 * 4) && (randomNumber < 10 / 6 * 5)) {
+			return new Cactus(pen, canvasWidth, canvasHeight, cactuses.big.two);
+		} else if ((randomNumber >= 10 / 6 * 5) && (randomNumber <= 10)) {
+			return new Cactus(pen, canvasWidth, canvasHeight, cactuses.big.three);
+		}
 	} else {
 		return new DinoFly(pen, canvasWidth, canvasHeight, dinoFly.top);
 	}
