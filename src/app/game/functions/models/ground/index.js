@@ -1,4 +1,5 @@
 import {constsCommon} from './../../../consts/common';
+import {gameOver} from "../../../consts/game";
 
 export class Ground {
 	constructor(pen, x = 0, y = this.height / 2, height = pen.canvas.clientHeight, width = pen.canvas.clientWidth) {
@@ -17,7 +18,7 @@ export class Ground {
 	}
 
 	updatePos = (speed, y) => {
-		this.xPos = this.xPos - speed;
+		gameOver ? this.xPos = this.xPos : this.xPos = this.xPos - speed;
 		this.yPos = y;
 	};
 }

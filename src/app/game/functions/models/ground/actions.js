@@ -2,6 +2,7 @@ import {Ground} from "./index";
 import {groundSpeed} from "../../../consts/ground";
 import {constsCommon} from "../../../consts/common";
 import {bufferGrounds} from "./buffer";
+import {gameOver} from "../../../consts/game";
 
 export const bufferGroundsStart = (pen, canvasWidth, canvasHeight) => {
 	if (bufferGrounds.length === 0) {
@@ -18,14 +19,16 @@ export const bufferGroundsStart = (pen, canvasWidth, canvasHeight) => {
 			bufferGrounds[i].yPos = canvasHeight / 2;
 		}
 
-		//добавляет в буфер
-		if (bufferGroundsLast.xPos - 30 < canvasWidth - spriteWidth && bufferGroundsLast.xPos + canvasWidth / 2 > canvasWidth - spriteWidth) {
-			bufferGrounds.push(new Ground(pen, bufferGroundsLast.xPos + spriteWidth - 10));
-		}
+		if (!gameOver) {
+			//добавляет в буфер
+			if (bufferGroundsLast.xPos - 30 < canvasWidth - spriteWidth && bufferGroundsLast.xPos + canvasWidth / 2 > canvasWidth - spriteWidth) {
+				bufferGrounds.push(new Ground(pen, bufferGroundsLast.xPos + spriteWidth - 10));
+			}
 
-		//удаляет из буфера
-		if (bufferGrounds[0].xPos < -(spriteWidth + canvasWidth)) {
-			bufferGrounds.splice(0, 1);
+			//удаляет из буфера
+			if (bufferGrounds[0].xPos < -(spriteWidth + canvasWidth)) {
+				bufferGrounds.splice(0, 1);
+			}
 		}
 	}
 };

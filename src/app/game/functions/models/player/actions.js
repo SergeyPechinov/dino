@@ -12,6 +12,7 @@ import {
 	playerHeightSeat,
 	playerWidthSeat
 } from "../../../consts/player";
+import {gameOver} from "../../../consts/game";
 
 let player;
 let xPos = playerXPos;
@@ -41,34 +42,34 @@ export function drawRun() {
 		this.yImage = 3;
 	}
 
-	let playerYPos;
 
 	if (this.isSeat) {
-		playerYPos = this.yPos + 33;
+		this.playerYPos = this.yPos + 33;
 	} else if (this.yPosBounce) {
-		playerYPos = this.yPosBounce;
+		this.playerYPos = this.yPosBounce;
 	} else {
-		playerYPos = this.yPos;
+		this.playerYPos = this.yPos;
 	}
 
-	let newPlayerWidth;
-	let newPlayerHeight;
+	this.playerXPos = this.xPos;
 
 	if (this.isSeat) {
-		newPlayerWidth = playerWidthSeat;
-		newPlayerHeight = playerHeightSeat;
+		this.playerWidth = playerWidthSeat;
+		this.playerHeight = playerHeightSeat;
 	} else {
-		newPlayerWidth = playerWidth;
-		newPlayerHeight = playerHeight;
+		this.playerWidth = playerWidth;
+		this.playerHeight = playerHeight;
 	}
 
 	// const playerYPos = this.yPosBounce ? this.yPosBounce : this.yPos;
 
 	this.pen.beginPath();
-	this.pen.drawImage(this.sprite, this.xImage, this.yImage, newPlayerWidth, newPlayerHeight, this.xPos, playerYPos, newPlayerWidth, newPlayerHeight);
+	this.pen.drawImage(this.sprite, this.xImage, this.yImage, this.playerWidth, this.playerHeight, this.playerXPos, this.playerYPos, this.playerWidth, this.playerHeight);
 	this.pen.closePath();
 
-	this.runCounter++;
+	if (!gameOver) {
+		this.runCounter++;
+	}
 
 	if (this.runCounter === 6) {
 		this.runStep = !this.runStep;

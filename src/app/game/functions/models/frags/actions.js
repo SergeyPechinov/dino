@@ -3,6 +3,7 @@ import {cactuses} from "../../../consts/cactuses";
 import {bufferFrags} from "./buffer";
 import {DinoFly} from "./dinoFly";
 import {dinoFly} from "../../../consts/dinoFly";
+import {gameOver} from "../../../consts/game";
 
 export const bufferFragsStart = (pen, canvasWidth, canvasHeight) => {
 	if (bufferFrags.length < 1) {
@@ -10,19 +11,21 @@ export const bufferFragsStart = (pen, canvasWidth, canvasHeight) => {
 	} else {
 		bufferFrags.map((item, index) => {
 			//добавляет врага в буффера
-			if (bufferFrags.length - 1 === index) {
+			if (bufferFrags.length - 1 === index && !gameOver) {
 				if (canvasWidth - item.frag.width - 900 > item.xPos) {
 					bufferFrags.push(_changeRandomFrag(pen, canvasWidth, canvasHeight / 2));
 				}
 			}
 
 			//скорость
-			item.xPos -= 5;
+			if (!gameOver) {
+				item.xPos -= 5;
+			}
 			item.draw();
 		});
 	}
 	//удаляет врага из буффера
-	if (bufferFrags[0].xPos < -bufferFrags[0].frag.width) {
+	if (bufferFrags[0].xPos < -bufferFrags[0].frag.width && !gameOver) {
 		bufferFrags.splice(0, 1);
 	}
 };

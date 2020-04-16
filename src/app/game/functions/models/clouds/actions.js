@@ -1,6 +1,7 @@
 import {bufferClouds} from "./buffer";
 import {Cloud} from "./index";
 import {cloudWidth} from "../../../consts/clouds";
+import {gameOver} from "../../../consts/game";
 
 export const bufferCloudsStart = (pen, canvasWidth, canvasHeight) => {
 	if (bufferClouds.length === 0) {
@@ -8,21 +9,24 @@ export const bufferCloudsStart = (pen, canvasWidth, canvasHeight) => {
 	} else {
 		bufferClouds.map((item, index) => {
 			//добавляет облако в буфер
-			if (bufferClouds.length - 1 === index) {
-				if (canvasWidth - cloudWidth - 100 > item.xPos) {
-					if ((Math.random() * 100).toFixed(0) <= 2) {
-						bufferClouds.push(new Cloud(pen, canvasWidth, _createYPos(canvasHeight)));
+				if (bufferClouds.length - 1 === index && !gameOver) {
+					if (canvasWidth - cloudWidth - 100 > item.xPos) {
+						if ((Math.random() * 100).toFixed(0) <= 2) {
+							bufferClouds.push(new Cloud(pen, canvasWidth, _createYPos(canvasHeight)));
+						}
 					}
 				}
-			}
 
 			//скорость
-			item.xPos -= 2;
+			if (!gameOver) {
+				item.xPos -= 2;
+			}
 			item.draw();
 		});
 
 		//удаляет облака из буффера
-		if (bufferClouds[0].xPos < -cloudWidth) {
+
+		if (bufferClouds[0].xPos < -cloudWidth && !gameOver) {
 			bufferClouds.splice(0, 1);
 		}
 	}

@@ -2,6 +2,7 @@ import {Frag} from "./index";
 import {groundHeight} from "../../../consts/ground";
 import {playerHeight} from "../../../consts/player";
 import {dinoFly} from "../../../consts/dinoFly";
+import {gameOver} from "../../../consts/game";
 
 export class DinoFly extends Frag {
 	constructor(...args) {
@@ -33,7 +34,9 @@ export class DinoFly extends Frag {
 				this.timer = 0;
 				this.frag = dinoFly.bottom;
 			} else {
-				this.timer++;
+				if (!gameOver) {
+					this.timer++;
+				}
 			}
 		} else {
 			if (this.timer > 10) {
@@ -41,7 +44,9 @@ export class DinoFly extends Frag {
 				this.timer = 0;
 				this.frag = dinoFly.top;
 			} else {
-				this.timer++;
+				if (!gameOver) {
+					this.timer++;
+				}
 			}
 		}
 		super.draw();
