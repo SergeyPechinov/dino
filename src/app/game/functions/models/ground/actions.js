@@ -1,8 +1,7 @@
 import {Ground} from "./index";
-import {groundSpeed} from "../../../consts/ground";
 import {constsCommon} from "../../../consts/common";
 import {bufferGrounds} from "./buffer";
-import {gameOver} from "../../../consts/game";
+import {gameOver, gameSpeed} from "../../../consts/game";
 
 export const bufferGroundsStart = (pen, canvasWidth, canvasHeight) => {
 	if (bufferGrounds.length === 0) {
@@ -14,7 +13,7 @@ export const bufferGroundsStart = (pen, canvasWidth, canvasHeight) => {
 
 		//двигает
 		for (let i = 0; i < bufferGroundsLength; i++) {
-			bufferGrounds[i].updatePos(groundSpeed.VERY_SLOW, canvasHeight / 2);
+			bufferGrounds[i].updatePos(gameSpeed, canvasHeight / 2);
 			bufferGrounds[i].draw();
 			bufferGrounds[i].yPos = canvasHeight / 2;
 		}

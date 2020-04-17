@@ -3,7 +3,7 @@ import {cactuses} from "../../../consts/cactuses";
 import {bufferFrags} from "./buffer";
 import {DinoFly} from "./dinoFly";
 import {dinoFly} from "../../../consts/dinoFly";
-import {gameOver} from "../../../consts/game";
+import {gameOver, gameSpeed} from "../../../consts/game";
 
 export const bufferFragsStart = (pen, canvasWidth, canvasHeight) => {
 	if (bufferFrags.length < 1) {
@@ -19,7 +19,7 @@ export const bufferFragsStart = (pen, canvasWidth, canvasHeight) => {
 
 			//скорость
 			if (!gameOver) {
-				item.xPos -= 5;
+				item.xPos -= gameSpeed;
 			}
 			item.draw();
 		});
